@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js" integrity="sha384-f7wOtFps7eeIwcPoS0BT08o/onjsbd16QnjQmOoqVIimY7dzcSzfDU/htuPJlTFX" crossorigin="anonymous"></script>
-	<script src="./aes.min.js"></script>
+	<script src='./aes.min.js'></script>
 	<link rel='stylesheet' href='./theme.min.css'>
 
 </head>
@@ -45,15 +45,19 @@
 			<textarea id='text' placeholder=''></textarea>
 		</div><br><br>
 		<div class='center'>
-			<div id='one'><button id='toggle' class='btn btn-primary'>Encrypt Mode</button></div>
-			<input type='password' id='password' placeholder='Encryption password' class='dataItem'>
-			<br>
-			<input type='password' id='confirmPass' placeholder='Confirm password' class='dataItem'>
-			<br>
+			<label>Use Encryption <input type='checkbox' id='useEncrypt' checked></label>
+			<br><br>
+			<div id='one'><button id='toggle' class='btn btn-primary'>Encode <i class='fa fa-lock'></i></button></div>
+			<span id='encryptArea'>
+				<input type='password' id='password' placeholder='Encryption password' class='dataItem'>
+				<br>
+				<input type='password' id='confirmPass' placeholder='Confirm password' class='dataItem'>
+				<br>
+			</span>
 			<button id='go' class='btn btn-success btn-lg dataItem'>Go</button>
 		</div>
-		<footer class='center'>By using this service you agree to our <a href='/legal/'>terms</a>.</footer>
+		<footer class='center'><a href='https://github.com/beardog108/snow2/releases/'>Available for Windows/Linux</a> (Offers increased security)<br>By using this service you agree to our <a href='/legal/'>terms</a>.</footer>
 	</div>
-	<script src='./main.min.js'></script>
+	<script src='./main.js'></script>
 </body>
 </html>

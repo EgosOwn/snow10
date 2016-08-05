@@ -10,103 +10,139 @@ clipboard.on('success', function(e) {
 clipboard.on('error', function(e) {
 	$('#copyFeedback').css('display', 'inherit');
 	$('#copyFeedback').css('color', 'red');
-	$('#copyFeedback').html('Failed to copy.');
+	$('#copyFeedback').html('Your browser doesn\'t seem to support automatic copying. Get a better one.');
     e.clearSelection();
 });
+
+if ($('#useEncrypt').is(':checked') == false)
+{
+	$('#encryptArea').css('display', 'none');
+}
 
 $('#modalClose').click(function(){
 	$('#copyFeedback').css('display', 'none');
 });
 
-window.snowMode = 'encrypt';
+window.snowMode = 'encode';
+
+$("#output").on("click", function () {
+   $(this).select();
+});
 
 $('#toggle').click(function(){
 
-	if (window.snowMode == 'encrypt')
+	if (window.snowMode == 'encode')
 	{
-		window.snowMode = 'decrypt';
-		$('#toggle').html("Decrypt Mode");
+		window.snowMode = 'decode';
+		$('#toggle').html("Decode <i class='fa fa-unlock'></i>");
 		$('#confirmPass').css('display', 'none');
 	}
 	else
 	{
-		window.snowMode = 'encrypt';
-		$('#toggle').html("Encrypt Mode");
+		window.snowMode = 'encode';
+		$('#toggle').html("Encode <i class='fa fa-lock'></i>");
 		$('#confirmPass').css('display', 'inline');
 	}
 
 });
 
-$('#go').click(function(){
+/* based on stackoverflow.com/questions/14430633/how-to-convert-text-to-binary-code-in-javascript */
+function binToText(str) {
+	var str = str.replace(/ /g, "1");
+	var str = str.replace(/\t/g, "0");
+    if(str.match(/[10]{8}/g)){
+        var wordFromBinary = str.match(/([10]{8}|\s+)/g).map(function(fromBinary){
+            return String.fromCharCode(parseInt(fromBinary, 2) );
+        }).join('');
+        return wordFromBinary;
+    }
+}
 
-	 document.getElementById("go").disabled = true;
+/* based on stackoverflow.com/questions/21354235/converting-binary-to-text-using-javascript */
+function textToBin(text) {
+	var output = '';
+  var length = text.length,
+      output = [];
+  for (var i = 0;i < length; i++) {
+    var bin = text[i].charCodeAt().toString(2);
+    output.push(Array(8-bin.length+1).join("0") + bin);
+  } 
+  return output.join('');
+}
 
-	var password;
-	var confirmPass;
-	var encrypted;
-	var decrypted;
-	var encodeChoice;
-
-	var text = $('#text').val();
-
-	if (text == '')
+$('#useEncrypt').click(function(){
+	if (! this.checked)
 	{
-		document.getElementById("go").disabled = false;
-		return;
-	}
-
-	if (window.snowMode == 'encrypt')
-	{
-		encodeChoice = '1';
-
-		password = $('#password').val();
-		confirmPass = $('#confirmPass').val();
-
-		if (password != confirmPass)
-		{
-			alert("Passwords must match");
-			document.getElementById("go").disabled = false;
-			return;
-		}
-		else
-		{
-			encrypted = CryptoJS.AES.encrypt(text, password);
-			
-			$.post( "./snow2.py", { choice: encodeChoice, text: encrypted.toString()} )
-			  .done(function( data ) {
-			  	document.getElementById("go").disabled = false;
-
-			   	$('#output').val(data);
-
-				$('#outputModal').modal();
-			  });
-		}
+		$('#encryptArea').css('display', 'none');
 	}
 	else
 	{
-		encodeChoice = '2';
+		$('#encryptArea').css('display', 'inherit');
+	}
+})
 
-		$.post( "./snow2.py", { choice: encodeChoice, text: text} )
-		.done(function( data ) {
+function verifyPass(mode)
+{
+	if ($('#password').val() == '')
+	{
+		alert('You must provide a password.');
+		return false;
+	}
 
-			text = data;
-			password = $('#password').val();
+	if (mode == 'encrypt')
+	{
+		if ($('#password').val() != $('#confirmPass').val())
+		{
+			alert('Passwords must match.');
+			return false;
+		}
+	}
+	return true;
+}
 
-			decrypted = CryptoJS.AES.decrypt(text, password);
-			decrypted = decrypted.toString(CryptoJS.enc.Utf8);
-			if (decrypted == '')
+$('#go').click(function(){
+	var output = '';
+
+	var input = $('#text').val();
+
+	if (input == '') { return false; }
+
+
+	// If we're encoding: 
+	if (window.snowMode == 'encode')
+	{
+		// If we should use encryption, encrypt first:
+		if ($('#useEncrypt').is(':checked'))
+		{
+			// verify password first
+			if (verifyPass('encrypt'))
 			{
-				alert('invalid password');
-				document.getElementById("go").disabled = false;
+				input = CryptoJS.AES.encrypt(input, $('#password').val()).toString();
 			}
 			else
 			{
-			  	document.getElementById("go").disabled = false;
-				$('#output').val(decrypted);
-				$('#outputModal').modal();
+				return false;
 			}
-
-		});
+		}
+		// convert result to binary
+		output = textToBin(input);
+		$('#output').val(output.toString().replace(/1/g, " ").replace(/0/g, "\t"));
 	}
-
+	else
+	{
+		var output = binToText(input);
+		if ($('#useEncrypt').is(':checked'))
+		{
+			if (verifyPass('decrypt'))
+			{
+				output = CryptoJS.AES.decrypt(output, $('#password').val()).toString(CryptoJS.enc.Utf8);
+			}
+			else
+			{
+				return false;
+			}
+		}
+		$('#output').val(output.toString());
+	}
+	$('#outputModal').modal();
 });
