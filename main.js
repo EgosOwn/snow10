@@ -1,3 +1,6 @@
+/*
+ Copyright (c) 2017 Kevin Froman MIT (expat) license
+*/
 var clipboard = new Clipboard('.btn');
 
 var zero = '​';
