@@ -51,13 +51,13 @@ $('#toggle').click(function(){
 	if (window.snowMode == 'encode')
 	{
 		window.snowMode = 'decode';
-		$('#toggle').html("Decode <i class='fa fa-unlock'></i>");
+		$('#toggle').html("Decode Mode <i class='fa fa-unlock'></i>");
 		$('#confirmPass').css('display', 'none');
 	}
 	else
 	{
 		window.snowMode = 'encode';
-		$('#toggle').html("Encode <i class='fa fa-lock'></i>");
+		$('#toggle').html("Encode Mode <i class='fa fa-lock'></i>");
 		$('#confirmPass').css('display', 'inline');
 	}
 
@@ -176,4 +176,8 @@ $('#go').click(function(){
 		$('#output').val(output.toString());
 	}
 	$('#outputModal').modal();
+});
+
+$('#clearInputButton').click(function(){
+	$('#text').val('');
 });
