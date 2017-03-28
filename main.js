@@ -156,12 +156,12 @@ $('#go').click(function(){
 			}
 		}
 		// convert result to binary
-		output = textToBin(input);
+		output = textToBin(encodeURIComponent(input));
 		$('#output').val(replaceAll(replaceAll(output.toString(), "1", one), "0", zero));
 	}
 	else
 	{
-		var output = binToText(input);
+		var output = decodeURIComponent(binToText(input));
 		if ($('#useEncrypt').is(':checked'))
 		{
 			if (verifyPass('decrypt'))
