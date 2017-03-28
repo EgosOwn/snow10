@@ -156,6 +156,7 @@ $('#go').click(function(){
 			}
 		}
 		// convert result to binary
+    
 		output = textToBin(input);
 		$('#output').val(replaceAll(replaceAll(output.toString(), "1", one), "0", zero));
 	}
@@ -173,7 +174,7 @@ $('#go').click(function(){
 				return false;
 			}
 		}
-		$('#output').val(output.toString());
+		$('#output').val(atob(output.toString()));
 	}
 	$('#outputModal').modal();
 });
