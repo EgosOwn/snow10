@@ -125,7 +125,7 @@ $('#go').click(function(){
 			}
 		}
 		// convert result to binary
-		output = textToBin(input);
+		output = textToBin(btoa(input));
 		$('#output').val(output.toString().replace(/1/g, " ").replace(/0/g, "\t"));
 	}
 	else
@@ -142,7 +142,7 @@ $('#go').click(function(){
 				return false;
 			}
 		}
-		$('#output').val(output.toString());
+		$('#output').val(atob(output.toString()));
 	}
 	$('#outputModal').modal();
 });
