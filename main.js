@@ -43,27 +43,9 @@ $('#modalClose').click(function(){
 	$('#copyFeedback').css('display', 'none');
 });
 
-window.snowMode = 'encode';
 
 $("#output").on("click", function () {
    $(this).select();
-});
-
-$('#toggle').click(function(){
-
-	if (window.snowMode == 'encode')
-	{
-		window.snowMode = 'decode';
-		$('#toggle').html("Decode Mode <i class='fa fa-unlock'></i>");
-		$('#confirmPass').css('display', 'none');
-	}
-	else
-	{
-		window.snowMode = 'encode';
-		$('#toggle').html("Encode Mode <i class='fa fa-lock'></i>");
-		$('#confirmPass').css('display', 'inline');
-	}
-
 });
 
 $('#useZeroWidthCharacters').click(function(){
@@ -100,7 +82,7 @@ function textToBin(text) {
   for (var i = 0;i < length; i++) {
     var bin = text[i].charCodeAt().toString(2);
     output.push(Array(8-bin.length+1).join("0") + bin);
-  } 
+  }
   return output.join('');
 }
 
@@ -134,7 +116,14 @@ function verifyPass(mode)
 	return true;
 }
 
-$('#go').click(function(){
+$('#encode').click(function(){
+  go('encode');
+});
+$('#decode').click(function(){
+  go('decode');
+});
+
+function go(mode) {
 	var output = '';
 
 	var input = $('#text').val();
@@ -142,8 +131,8 @@ $('#go').click(function(){
 	if (input == '') { return false; }
 
 
-	// If we're encoding: 
-	if (window.snowMode == 'encode')
+	// If we're encoding:
+	if (mode == 'encode')
 	{
 		// If we should use encryption, encrypt first:
 		if ($('#useEncrypt').is(':checked'))
@@ -184,7 +173,7 @@ $('#go').click(function(){
 		$('#output').val(output.toString());
 	}
 	$('#outputModal').modal();
-});
+}
 
 $('#clearInputButton').click(function(){
 	$('#text').val('');
