@@ -161,7 +161,12 @@ $('#go').click(function(){
 	}
 	else
 	{
-		var output = decodeURIComponent(binToText(input));
+	    var sanitized = "";
+	    var split = input.split("");
+	    for (var i = 0; i < split.length; i++)
+            if(split[i] == one || split[i] == zero)
+                sanitized = sanitized + split[i]
+		var output = decodeURIComponent(binToText(sanitized));
 		if ($('#useEncrypt').is(':checked'))
 		{
 			if (verifyPass('decrypt'))
