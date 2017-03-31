@@ -154,7 +154,7 @@ function go(mode) {
 		}
 		// convert result to binary
 		output = textToBin(encodeURIComponent(input));
-		$('#output').val(replaceAll(replaceAll(output.toString(), "1", one), "0", zero));
+		$('#output').text(replaceAll(replaceAll(output.toString(), "1", one), "0", zero));
 	}
 	else
 	{
@@ -175,7 +175,7 @@ function go(mode) {
 				return false;
 			}
 		}
-		$('#output').val(output.toString());
+		$('#output').text(output.toString());
 	}
 	$('#outputModal').modal();
 }

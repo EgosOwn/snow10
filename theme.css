@@ -39,7 +39,14 @@ footer
 
 #copyFeedback
 {
-	display: none;
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+#outputDecode, #copyFeedback{
+	display: none;
+}
+
+#outputDecode{
+	overflow: scroll;
 }
