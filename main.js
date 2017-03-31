@@ -12,6 +12,11 @@ var z_one = '‍';
 var w_zero = ' ';
 var w_one = '\t';
 
+
+function showError(msg){
+$.bootstrapGrowl(msg, {type: 'danger'})
+}
+
 function escapeRegExp(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
@@ -101,7 +106,7 @@ function verifyPass(mode)
 {
 	if ($('#password').val() == '')
 	{
-		alert('You must provide a password.');
+		showError('You must provide a password.');
 		return false;
 	}
 
@@ -109,7 +114,7 @@ function verifyPass(mode)
 	{
 		if ($('#password').val() != $('#confirmPass').val())
 		{
-			alert('Passwords must match.');
+			showError('Passwords must match.');
 			return false;
 		}
 	}
