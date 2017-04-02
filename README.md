@@ -12,7 +12,7 @@ Snow10 is a web app inspired by the [original snow program](http://darkside.com.
 
 # License
 
-MIT license, see LICENSE file.
+GLPv3, see license file
 
 # Warnings
 
