@@ -6,20 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name='description' content="Perform Whitespace steganography with encryption and zero width characters">
     <meta name='author' content='Kevin Froman'>
-    <title>Snow2</title>
+    <title>Snow10</title>
 	<link rel="stylesheet" href="./bootstrap.min.css">
 	<link rel="stylesheet" href="./bootstrap-theme.min.css">
 	<link rel="stylesheet" href="./font-awesome.min.css">
+	<link rel='stylesheet' href='./theme.min.css'>
 	<script src="./jquery.min.js"></script>
 	<script src="./bootstrap.min.js"></script>
 	<script src="./clipboard.min.js"></script>
 	<script src="./jquery.bootstrap-growl.min.js"></script>
 	<script src='./aes.min.js'></script>
-	<link rel='stylesheet' href='./theme.min.css'>
 
 </head>
 <body>
-<a href="https://github.com/beardog108/snow2/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+<a href="https://github.com/beardog108/snow10/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
 <div class="modal fade" id="outputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -43,9 +43,9 @@
 	<div class='container'>
 
 		<div class='page-header'>
-			<h1 class='center'>Snow2 ☃</h1>
+			<h1 class='center'>Snow10 ☃</h1>
 		</div>
-		<p>Snow2 is a simple web app for converting text to whitespace characters, which can be hidden in normal messages.</p>
+		<p>Snow10 is a simple web app for converting text to whitespace characters, which can be hidden in normal messages.</p>
 	<p>It is inspired by the <a href='http://darkside.com.au/snow/'>original program</a> published in 1998.</p>
 		<div id='dataArea'>
 			<textarea id='text' placeholder=''></textarea>
@@ -55,7 +55,7 @@
 		<div class='center'>
 			<label>Use Zero-Width Characters <input type='checkbox' id='useZeroWidthCharacters' checked></label>
 			<br><br>
-			<label>Use Encryption <input type='checkbox' id='useEncrypt' checked></label>
+			<label>Use Encryption <input type='checkbox' id='useEncrypt'></label>
 			<br><br>
 			<span id='encryptArea'>
 				<input type='password' id='password' placeholder='Encryption password' class='dataItem'>
