@@ -1,14 +1,14 @@
-# Snow2
+# Snow10
 
 Obfuscate &amp; Encrypt Text as White-Space
 
-Demo: [https://ChaosWebs.net/snow2](https://chaoswebs.net/snow2/)
+Demo: [https://ChaosWebs.net/snow10](https://chaoswebs.net/snow10/)
 
 ![snow image](snow.jpg)
 
 # About
 
-Snow2 is a web app inspired by the [original snow program](http://darkside.com.au/snow/) to use whitespace/zero-width characters to obfuscate messages within the whitespace of other content.
+Snow10 is a web app inspired by the [original snow program](http://darkside.com.au/snow/) to use whitespace/zero-width characters to obfuscate messages within the whitespace of other content.
 
 # License
 
