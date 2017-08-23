@@ -22,10 +22,13 @@ GLPv3, see license file
 * Use encryption if you really need to protect your messages. Use a good password but keep in mind that no encryption is perfect (Snow2 uses cryptojs AES)
 * It is best to save the site offline to avoid your messages being intercepted by possible malicious code sent from (my) web server
 * The larger your message, the more obvious it is that it is there.
+* While Snow10 technically has no size limit for messages, very large messages may take a long amount of time to create. Your browser may appear to freeze if you do this, but it should finish eventually.
 
 # Roadmap (to do)
 
 * Ability to automatically spread/retrieve message content into paragraphs of "cover" text
+
+* Optimize the conversion code for longer messages
 
 * CLI version
 
