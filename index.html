@@ -1,90 +1,23 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
-	<meta charset='utf-8'>
-    <!-- Snow10 - Whitespace steganography. electronic invisible ink.
-    Copyright (C) 2017  Kevin Froman https://ChaosWebs.net/
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<meta name='description' content="Perform Whitespace steganography with encryption and zero width characters">
-    <meta name='author' content='Kevin Froman'>
-    <title>Snow10</title>
-	<link rel="stylesheet" href="./bootstrap.min.css">
-	<link rel="stylesheet" href="./bootstrap-theme.min.css">
-	<link rel="stylesheet" href="./font-awesome.min.css">
-	<link rel='stylesheet' href='./theme.css'>
-	<script src="./jquery.min.js"></script>
-	<script src="./bootstrap.min.js"></script>
-	<script src="./clipboard.min.js"></script>
-	<script src="./jquery.bootstrap-growl.min.js"></script>
-	<script src='./aes.min.js'></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
-<a href="https://github.com/beardog108/snow10/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
-<div class="modal" id="outputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title center" id="myModalLabel">Your Text Is Ready!</h4>
-      </div>
-      <div class="modal-body">
-        <br>
-				<pre id='output'></pre>
-        <div class='center'><button class="btn btn-success" data-clipboard-action="copy" data-clipboard-target="#output">Copy to Clipboard</button></div>
-        <div id='copyFeedback' class='center'></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" id='modalClose'>Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="container main">
+		<h1>Snow10 ☃</h1>
 
-	<div class='container'>
-
-		<div class='page-header'>
-			<h1 class='center'>Snow10 ☃</h1>
-		</div>
-		<p>Snow10 is a simple web app for converting text to whitespace characters, which can be hidden in normal messages.</p>
-	<p>It is inspired by the <a href='http://darkside.com.au/snow/'>original program</a> published in 1998.</p>
-		<div id='dataArea'>
-			<textarea id='text' placeholder=''></textarea>
-		</div>
-		<div class='center'><button class='btn btn-sm btn-default dataItem' id='clearInputButton'>Clear Input <i class='fa fa-cross'></i></button></div>
-		<br><br>
-		<div class='center'>
-			<label>Use Zero-Width Characters <input type='checkbox' id='useZeroWidthCharacters' checked></label>
-			<br><br>
-			<label>Use Encryption <input type='checkbox' id='useEncrypt'></label>
-			<br><br>
-			<span id='encryptArea'>
-				<input type='password' id='password' placeholder='Encryption password' class='dataItem'>
-				<br>
-				<input type='password' id='confirmPass' placeholder='Confirm password' class='dataItem'>
-				<br>
-			</span>
-			<div class="btn-group" role="group" aria-label="..." id='encodeDecodeArea'>
-			  <button type="button" class="btn btn-primary" id="encode">Encode <i class='fa fa-lock'></i></button>
-			  <button type="button" class="btn btn-primary" id="decode">Decode <i class='fa fa-unlock'></i></button>
-			</div>
+		<form class="encode">
+			<label for="hideText">Non-secret message: <input type="text" name="hideText"></label>
 			<br>
-		</div>
+			<h1>Secret message</h1>
+			<textarea name="input" required></textarea>
+			<h1>Output</h1>
+			<textarea name="output" readonly></textarea>
+			<input type="button" value="Hide - Unhide">
+		</form>
 	</div>
-	<footer class='center'>made with <i class='fa fa-heart'></i> by <a href='https://www.chaoswebs.net/'>Kevin Froman</a></footer>​‍​​‍​​​​‍‍​​‍​‍​‍‍‍‍​​‍​​‍​​‍​‍​​‍‍​​‍​​‍​​​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​‍​​​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​​‍‍‍​‍‍​‍‍‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​​‍​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​‍​​​​‍‍​​‍​‍​‍‍‍​​‍​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​‍​​‍​‍‍​​​‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​​‍‍​‍‍​‍‍‍​​‍‍​‍‍‍‍​‍‍‍​‍‍‍​‍‍​‍‍​‍​‍‍​​​​‍​‍‍​‍‍‍​​​‍​​‍​‍​​‍‍​​‍‍​‍​​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​​‍​​‍​‍​‍​​​‍​‍​​‍‍​​‍​​​‍​​‍​‍​​‍‍‍​​‍​​‍‍‍​​​​​‍​​‍​‍​​‍‍‍​​​​​‍‍​​‍‍
-	<script src='./main.js'></script>
 </body>
 </html>
