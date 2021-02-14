@@ -15,3 +15,33 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+(
+
+function(){
+
+    var characterSet = ['​', '�', "‌"]
+    let encodeForm = document.getElementsByTagName("form")[0]
+
+    encodeForm.onsubmit = function(e){
+
+        let msg: HTMLTextAreaElement = document.getElementsByTagName('textarea')[0]
+        let msgText: string = msg.value;
+        let encoded = new Uint16Array(msgText.length)
+
+        for (let i = 0; i < msgText.length; i++){
+
+            encoded[i] = msgText.charCodeAt(i)
+
+        }
+        console.debug(encoded)
+
+        return false
+
+    }
+
+
+}()
+
+
+)

@@ -1,22 +1,52 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄️</text></svg>">
   <link rel="stylesheet" href="theme.css">
+  <script src="main.js" defer></script>
 </head>
 <body>
 	<div class="container main">
 		<h1>Snow10 ☃</h1>
+		<p>Snow10 is a simple web app for converting text to whitespace characters, which can be hidden in normal messages.</p>
+		<p>It is inspired by the <a href="https://web.archive.org/web/20210117115615/http://darkside.com.au/snow/">original program</a> published in ~1998.</p>
+		<p>Do not use alongside languages/emoji that use zero-width characters. Sorry, it's the way it works.</p>
+		<pre>
+	Threat model: person visually looking at message threads in an app such as Twitter, Matrix, Signal, documents, etc. E.g. abusive family
+
+	Encrypt the secret message using something like age or keybase before using if encryption is needed.
+
+	Will not resist forensic analysis.
+
+	Privacy: This works client-side and does not log any messages.
+		</pre>
+		<label>
+			<input type="radio" name="hideMode" value="hide" checked>
+			Hide mode
+		</label>
+		<label>
+			<input type="radio" name="hideMode" value="hide">
+			Unhide mode
+		</label>
 
 		<form class="encode">
-			<label for="hideText">Non-secret message: <input type="text" name="hideText"></label>
+			<label for="hideText">Non-secret message: <input type="text" name="hideText" placeholder="Wonderful weather we're having"></label>
 			<br>
 			<h1>Secret message</h1>
-			<textarea name="input" required></textarea>
+			<textarea name="inputSecret" placeholder="Secret to hide" required></textarea>
 			<h1>Output</h1>
 			<textarea name="output" readonly></textarea>
-			<input type="button" value="Hide - Unhide">
+			<input type="submit" value="Hide">
+		</form>
+
+		<form class="decode">
+			<h1>Message containing secret</h1>
+			<textarea name="input" placeholder="Non-secret message with secret inside" required></textarea>
+			<h1>Output</h1>
+			<textarea name="output" readonly></textarea>
+			<input type="submit" value="Hide">
 		</form>
 	</div>
 </body>

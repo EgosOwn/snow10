@@ -24,7 +24,12 @@ textarea{
 	height: 10em;
 }
 
-input[type="button"]{
+.encode{
+	margin-top: 2em;
+	display: block;
+}
+
+input[type="submit"]{
 	display: block;
 	margin-top: 2em;
 }
@@ -36,13 +41,14 @@ input[type="button"]{
 	}
   }
 
-  input[type="button"] {
+  input[type="submit"] {
+	  margin-top: 5em;
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
 	background-color:#768d87;
 	border-radius:5px;
 	border:1px solid #566963;
-	display:inline-block;
+	display:block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -52,13 +58,20 @@ input[type="button"]{
 	text-decoration:none;
 	text-shadow:0px -1px 0px #2b665e;
 }
-input[type="button"]:hover {
+input[type="submit"]:hover {
 	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
 	background-color:#6c7c7c;
 }
-input[type="button"]:active {
+input[type="submit"]:active {
 	position:relative;
 	top:1px;
 }
 
+.container{
+	margin-left: 2em;
+}
 
+
+.decode{
+	display: none;
+}
