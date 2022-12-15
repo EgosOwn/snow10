@@ -50,6 +50,17 @@ document.getElementsByClassName('decode')[0].onsubmit = function(e){
     return false
 }
 
+document.getElementById('copyResult').onclick = function(){
+    navigator.clipboard.writeText(document.getElementsByName('output')[0].value).then(function() {
+        /* clipboard successfully set */
+        alert("Copied to clipboard")
+      }
+    ).catch(function(err) {
+
+        alert("Failed to copy to clipboard")
+    })
+}
+
 
 let ternToText = function(input){
 

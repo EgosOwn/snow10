@@ -6,7 +6,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄️</text></svg>">
   <link rel="stylesheet" href="theme.css">
   <title>Snow10 - text steganography</title>
-  <script src="clipboard.min.js"></script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -16,13 +15,14 @@
 		<p>It is inspired by the <a href="https://web.archive.org/web/20210117115615/http://darkside.com.au/snow/">original program</a> published in ~1998.</p>
 		<p>Do not use alongside languages/emoji that use zero-width characters. Sorry, it's the way it works.</p>
 		<pre>
-	Threat model: person visually looking at message threads in an app such as Twitter, Matrix, Signal, documents, etc. E.g. abusive family
+Threat model: person visually looking at message threads in an app such as Twitter, Matrix, Signal, documents, etc. E.g. abusive family
 
-	Encrypt the secret message using something like age or keybase before using if encryption is needed.
+This is steganography, not cryptography.
+Encrypt the secret message using something like pgp or age before using if encryption is needed.
 
-	Will not resist forensic analysis. Don't use it over SMS.
+Will not resist forensic analysis. Don't use it over SMS.
 
-	Privacy: This works client-side and does not log any messages.
+Privacy: This works client-side and does not log any messages.
 		</pre>
 		<label>
 			<input type="checkbox" name="hideMode" checked>
@@ -36,6 +36,9 @@
 			<textarea name="inputSecret" placeholder="Secret to hide" required></textarea>
 			<h1>Output</h1>
 			<textarea name="output" readonly></textarea>
+			<br>
+			<button id="copyResult">Copy result to clipboard</button>
+			<br>
 			<input type="submit" value="Hide">
 		</form>
 
